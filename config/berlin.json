@@ -1,7 +1,7 @@
 {
   "scrapInterval" : 1,
   "scrapingOpts": {
-    "targetUrl" : "/anzeigen/s-wohnung-mieten/berlin/c203l3331",
+    "targetUrl" : "/anzeigen/s-wohnung-mieten/berlin/anzeige:angebote/c203l3331",
     "district" : ["Kreuzberg", "Prenzlauer Berg", "Friedrichshain", "Mitte", "Neukölln"],
     "postcode" : ["10317"],
     "regex": null ,
@@ -20,9 +20,9 @@
   },
   "mail": {
     "sender": {
-      "user": "address@gmail.com",
-      "pass": "123456"
+      "user": "node.flatscan.mailer@gmail.com",
+      "pass": "itluzfiiihhjqqbx"
     },
-  "mailto" : "youremail@address.com, yoursecondemail@address.com"
+  "mailto" : "patrick.kohan@gmail.com"
   }
 }

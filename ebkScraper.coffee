@@ -9,22 +9,25 @@ class EbkScraper extends require('events').EventEmitter
   scrape: () =>
     self = @
 
-    request.get baseUrl + @opts.targetUrl, (err, header, body) ->
-      console.error err if err
+    request.get baseUrl + @opts.targetUrl, self._loadOffer
 
-      $ = cheerio.load body
+  _loadOffer: (err, header, body) =>
+    self = @
 
-      $('#srchrslt-adtable > li').each ->
-        self._extOffer
-          titel: $(this).find('.ad-title').html()
-          insertTime: $(this).find('.ad-listitem-addon').html().toString().replace(/\s/g, "")
-          district: $(this).find('.c-h-adtble-lctn').html()[9..-1]
-          postcode: $(this).find('.c-h-adtble-lctn').html()[0..4]
-          netRent:  $(this).find('.ad-listitem-details > strong').html().replace(/\./g, "").match(/\d*/)[0]
-          href: baseUrl + $(this).find('.ad-title')['0'].attribs.href
-          subtitle: $(this).find('p').html()
-        , (offer) ->
-          self._checkOffer offer
+    console.error err if err
+    $ = cheerio.load body
+
+    $('#srchrslt-adtable > li').each ->
+      self._extOffer
+        titel: $(this).find('.ad-title').html()
+        insertTime: $(this).find('.ad-listitem-addon').html().toString().replace(/\s/g, "")
+        district: $(this).find('.c-h-adtble-lctn').html()[9..-1]
+        postcode: $(this).find('.c-h-adtble-lctn').html()[0..4]
+        netRent:  $(this).find('.ad-listitem-details > strong').html().replace(/\./g, "").match(/\d*/)[0]
+        href: baseUrl + $(this).find('.ad-title')['0'].attribs.href
+        subtitle: $(this).find('p').html()
+      , (offer) ->
+        self._checkOffer offer
 
   _extOffer: (offer, cb) ->
     request.get offer.href, (err, header, body) ->
@@ -43,6 +46,7 @@ class EbkScraper extends require('events').EventEmitter
       cb offer
 
   _checkOffer: (offer) ->
+    # console.log "district: #{offer.district}; rent: #{offer.netRent}; rooms: #{offer.rooms}; size: #{offer.size}"
     return unless offer.district in @opts.district or offer.postcode in @opts.postcode
     return if offer.netRent < @opts.netRent.min or offer.netRent > @opts.netRent.max
     return if offer.rooms < @opts.rooms.min or offer.rooms > @opts.rooms.max
