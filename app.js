@@ -26,7 +26,7 @@
     return mailer.send(subject, message, console.log);
   });
 
-  setInterval(ebk.scrape, config.scrapInterval * 1 * 1000);
+  setInterval(ebk.scrape, config.scrapInterval * 60 * 1000);
 
   console.log("service is up and runing\nfirst scraping action starts in " + (config.scrapInterval * 60) + " seconds");
 
