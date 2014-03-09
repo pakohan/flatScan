@@ -2,20 +2,20 @@
   "scrapInterval" : 1,
   "scrapingOpts": {
     "targetUrl" : "/anzeigen/s-wohnung-mieten/berlin/c203l3331",
-    "district" : ["Kreuzberg", "Prenzlauer Berg", "Friedrichshain", "Mitte"],
+    "district" : ["Kreuzberg", "Prenzlauer Berg", "Friedrichshain", "Mitte", "Neukölln"],
     "postcode" : ["10317"],
     "regex": null ,
     "rooms" : {
-      "min": "2,5",
+      "min": "2",
       "max": "3"
     },
     "size" : {
-      "min" : 75,
-      "max" : 100
+      "min" : 50,
+      "max" : 90
     },
     "netRent" : {
       "min" : 0,
-      "max" : 700
+      "max" : 600
   }
   },
   "mail": {

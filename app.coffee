@@ -14,7 +14,10 @@ ebk.on 'match', (offer) ->
   message = "#{offer.href}\n\n#{offer.phone}"
 
   sendIds.push offer.id
-  mailer.send subject, message, console.log
+  console.log subject
+  console.log message
+  console.log '\n'
+  #mailer.send subject, message, console.log
 
 setInterval ebk.scrape, config.scrapInterval * 60 * 1000
 
