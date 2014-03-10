@@ -14,8 +14,10 @@ ebk.on 'match', (offer) ->
   message = "#{offer.href}\n\n#{offer.phone}"
 
   sendIds.push offer.id
-  mailer.send subject, message, console.log
+  #mailer.send subject, message, console.log
+  console.log subject, message
 
-setInterval ebk.scrape, config.scrapInterval * 1 * 1000
+#setInterval ebk.scrape, config.scrapInterval * 1 * 1000
+ebk.scrape()
 
-console.log "service is up and runing\nfirst scraping action starts in #{config.scrapInterval * 60} seconds"
+console.log "#{process.env.PORT}service is up and runing\nfirst scraping action starts in #{config.scrapInterval * 60} seconds"
